@@ -1,0 +1,12 @@
+{
+  "spec_dir": "server/test/e2e",
+  "spec_files": [
+    "**/*.spec.ts"
+  ],
+  "helpers": [
+    "../helpers/**/*.js",
+    "../../../node_modules/jasmine-expect/index.js"
+  ],
+  "stopSpecOnExpectationFailure": false,
+  "random": false
+}

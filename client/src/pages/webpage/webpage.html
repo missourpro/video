@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>webpage</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+<ion-item >
+  <ion-label></ion-label>
+  <ion-input class="field-uri" type="url" placeholder="Enter Web Page URI Here..." [(ngModel)]="uri"></ion-input>
+</ion-item>
+
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <button class="button-preview" ion-button color="primary" icon-left full large (click)="preview()">
+      <ion-icon name="pause"></ion-icon>
+      Next
+    </button>
+  </ion-toolbar>
+</ion-footer>

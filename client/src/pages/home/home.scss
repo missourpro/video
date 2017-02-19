@@ -1,0 +1,24 @@
+page-home {
+  .container {
+    height: 100%;
+    width: 100%;
+    display: table;
+    ion-item{
+      display: table-row;
+      height: 100%;
+      .item-inner{
+        height: 100%;
+        ion-textarea {
+          height: 100%;
+          textarea {
+            height: 100%;
+          }
+        }
+      }
+    }
+
+    .bottom {
+      display: table-row;
+    }
+  }
+}

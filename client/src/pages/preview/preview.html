@@ -1,0 +1,39 @@
+<!--
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Preview
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+-->
+<ion-content >
+
+    <previewer>
+      <slideshow>
+        <slide *ngFor="let paragraph of paragraphs" >
+          {{paragraph}}
+        </slide>
+      </slideshow>
+    </previewer>
+
+    <!--<iframe id="slideshow" frameborder="0" overflow-scroll="true" >-->
+    <!--</iframe>-->
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <button id="convert" ion-button color="primary" icon-left full large (click)="next()">
+      <ion-icon name="play"></ion-icon>
+      Next
+    </button>
+
+
+
+  </ion-toolbar>
+
+
+
+</ion-footer>
+

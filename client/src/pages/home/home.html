@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button icon-only menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      Home
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div class="container">
+    <ion-item>
+      <ion-textarea id="post" [(ngModel)]="post" placeholder="Enter Text Here..." dir="auto"></ion-textarea>
+    </ion-item>
+
+  </div>
+
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <button class="button-preview" ion-button color="primary" icon-left full large (click)="preview()">
+    <ion-icon name="play"></ion-icon>
+    Next
+  </button>
+  </ion-toolbar>
+</ion-footer>
