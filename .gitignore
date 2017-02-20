@@ -31,8 +31,10 @@ plugins/
 plugins/android.json
 plugins/ios.json
 www/
+storage/*
 $RECYCLE.BIN/
 
 .DS_Store
 Thumbs.db
 UserInterfaceState.xcuserstate
+!*.gitkeep
