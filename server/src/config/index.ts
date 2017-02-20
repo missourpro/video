@@ -8,7 +8,7 @@ export default class Config{
   static SERVER_HOST= 'localhost';
   static SERVER_PORT= 3000;
   static SERVER_URI=prependHttp(Config.SERVER_HOST+':'+Config.SERVER_PORT);
-  static STORAGE_PATH = path.join(Config.PUBLIC_PATH,'storage');
+  static STORAGE_PATH = path.join(Config.ROOT_PATH,'storage');
   static FFMPEG_PATH = path.join(Config.ROOT_PATH,  'node_modules', 'ffmpeg', 'ffmpeg');
   static FFPROBE_PATH= path.join(Config.ROOT_PATH,  'node_modules', 'ffmpeg', 'ffprobe');
 }
