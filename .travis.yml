@@ -14,7 +14,7 @@ before_install:
 cache: yarn
 install:
   - npm install -g yarn
-  - yarn global add  yarn bower cordova ionic jasmine
+  - yarn global add bower cordova ionic jasmine
   - yarn install
   - yarn run install:post
   - bower install
