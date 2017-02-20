@@ -13,9 +13,10 @@ before_install:
   - Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
 cache: yarn
 install:
-  - npm install -g  yarn bower cordova ionic jasmine
+  - yarn global add  yarn bower cordova ionic jasmine
   - yarn install
   - yarn run install:post
   - bower install
   - yarn run build:client
-
+notifications:
+  slack: missourpro:PR6GCxcqcAQ06gne1aVkS08n
