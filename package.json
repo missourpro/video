@@ -7,8 +7,10 @@
   "scripts": {
     "postinstall": "",
     "install:post:server": "ffbinaries --output=./node_modules/ffmpeg",
-    "install:post": "npm run install:post:test && npm run install:post:server",
+    "install:post": "yarn run install:post:test && yarn run install:post:server",
     "install:post:test": "webdriver-manager update",
+    "test": "yarn run test:server",
+    "test:server": "yarn run test:server:unit && test:server:integration && test:server:e2e",
     "test:client:unit": "ng test",
     "test:client:e2e": "protractor",
     "test:server:unit": "jasmine JASMINE_CONFIG_PATH=server/test/unit/jasmine.json",
@@ -16,7 +18,7 @@
     "test:server:e2e": "jasmine JASMINE_CONFIG_PATH=server/test/e2e/jasmine.json --max_old_space_size=4096 --optimize_for_size --max_executable_size=4096 --stack_size=4096",
     "test:client:coverage": "ng test --code-coverage",
     "clean": "ionic-app-scripts clean",
-    "build": "ionic-app-scripts build",
+    "build:client": "ionic-app-scripts build",
     "ionic:build": "ionic-app-scripts build",
     "start:client": "ionic-app-scripts serve",
     "start:server": "electron .",
@@ -24,9 +26,9 @@
     "clear:osx": "rm -rf *-darwin-x64; rm -rf ./platforms/*-mas-x64",
     "clear:win": "rm -rf *-win32-ia32; rm -rf ./platforms/*-win32-x64",
     "clear:nix": "rm -rf *-linux-ia32; rm -rf ./platforms/*-linux-x64",
-    "build:osx": "npm run clear:osx && cp package.json www/ && electron-packager ./www/ --platform=darwin,mas --arch=x64 --asar --out=platforms ",
-    "build:win": "npm run clear:win && cp package.json www/ && electron-packager ./www/ --platform=win32 --arch=ia32,x64 --asar --out=platforms ",
-    "build:nix": "npm run clear:nix && cp package.json www/ && electron-packager ./www/ --platform=linux --arch=ia32,x64 --asar --out=platforms "
+    "build:osx": "yarn run clear:osx && cp package.json www/ && electron-packager ./www/ --platform=darwin,mas --arch=x64 --asar --out=platforms ",
+    "build:win": "yarn run clear:win && cp package.json www/ && electron-packager ./www/ --platform=win32 --arch=ia32,x64 --asar --out=platforms ",
+    "build:nix": "yarn run clear:nix && cp package.json www/ && electron-packager ./www/ --platform=linux --arch=ia32,x64 --asar --out=platforms "
   },
   "dependencies": {
     "@angular/common": "2.2.1",

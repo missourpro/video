@@ -1,0 +1,21 @@
+sudo: required
+dist: trusty
+language: node_js
+node_js:
+  - "6"
+addons:
+  apt:
+    packages:
+      - xvfb
+      - google-chrome-stable
+before_install:
+  - export DISPLAY=':99.0'
+  - Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
+cache: yarn
+install:
+  - npm install -g  yarn bower cordova ionic jasmine
+  - yarn install
+  - yarn run install:post
+  - bower install
+  - yarn run build:client
+
