@@ -17,7 +17,7 @@ export default class FfmpegVideo implements Video {
     let args = [
       '-y',
       '-f', 'image2pipe',
-      '-r', ''+ FfmpegVideo.FRAME_RATE,
+      '-r', ''+ (+FfmpegVideo.FRAME_RATE),
       '-i', '-',
       FfmpegVideo.VIDEO_PATH
     ];

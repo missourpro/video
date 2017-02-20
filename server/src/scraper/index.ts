@@ -9,14 +9,14 @@ export default class Scraper{
   private browserWindow:Electron.BrowserWindow;
   constructor(private scraperListener:ScraperListener ){
     this.browserWindowOptions=<Electron.BrowserWindowOptions>{
-      show: true,
+      show: false,
       experimentalFeatures: true
     };
     this.browserWindow = new BrowserWindow(this.browserWindowOptions);
   }
   scrape(uri:string){
     this.browserWindow.loadURL(uri);
-    this.browserWindow.webContents.openDevTools();
+    //this.browserWindow.webContents.openDevTools();
     this.browserWindow.webContents.on('did-finish-load', ()=>{
 
       this.browserWindow.webContents.executeJavaScript(`

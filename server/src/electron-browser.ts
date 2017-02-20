@@ -1,5 +1,5 @@
 import {Browser} from "./browser";
-import {BrowserListener} from "./browser-listener";
+import {BrowserListener, NullBrowserListener} from "./browser-listener";
 import {BrowserWindow} from 'electron';
 import NativeImage = Electron.NativeImage;
 import Config from "./config";
@@ -7,14 +7,11 @@ import * as path from "path";
 import * as fs from "fs";
 export default class ElectronBrowser implements Browser{
   private browserWindow:Electron.BrowserWindow;
-
   private browserWindowOptions:Electron.BrowserWindowOptions;
   private static TO_BE_GARBAGE_COLLECTED: Electron.BrowserWindow = null;
-  private browserListener: BrowserListener;
+  private browserListener: BrowserListener=new NullBrowserListener();
   private static FRAME_RATE: number = 25;
-  private static UNUSED_FRAME: Buffer;
   constructor(){
-    ElectronBrowser.UNUSED_FRAME=fs.readFileSync(Config.STORAGE_PATH+'/hello-world.jpeg')
     this.browserWindowOptions=<Electron.BrowserWindowOptions>{
       show: false,
       experimentalFeatures: true,
@@ -42,7 +39,7 @@ export default class ElectronBrowser implements Browser{
     //TODO Delete Temporary saved file
     fs.writeFileSync(slideshowPath, html);
     this.browserWindow.loadURL(slideshowUri);
-    this.browserWindow.show();
+    //this.browserWindow.show();
     //TODO Figure out how to use data url  instead(scripts and stylesheets are not loaded!!)
     // this.browserWindow.loadURL("data:text/html;charset=utf-8,"+encodeURI(html));
   }

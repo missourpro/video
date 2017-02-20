@@ -66,6 +66,6 @@ export abstract class Route{
     return this.getHandler()();
   }
   json(object:Object){
-    this.response.send(Route.HTTP_STATUS_OK, JSON.stringify(object))
+    this.response.status(Route.HTTP_STATUS_OK).send(JSON.stringify(object));
   }
 }

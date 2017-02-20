@@ -9,8 +9,10 @@ import Util from '../util';
 jasmine.DEFAULT_TIMEOUT_INTERVAL=30000;
 describe('FfmpegVideo', () => {
   const UNUSED_FRAME = new Buffer(0);
-  let HELLO_WORLD_FRAME:Buffer=new Buffer(fs.readFileSync(path.join(__dirname, '/fixtures/hello-world.jpeg')));
+  let FRAME:Buffer=new Buffer(fs.readFileSync(path.join(__dirname, '/fixtures/hello-world.jpeg')));
   const VIDEO_PATH:string=FfmpegVideo.VIDEO_PATH;
+  const TEXT_IN_FRAME = 'hello world';
+
   beforeEach(async ()=> {
   });
   afterEach(async ()=> {
@@ -36,11 +38,12 @@ describe('FfmpegVideo', () => {
     try{
       let video:Video =new FfmpegVideo();
       for(let i=0; i<10; i++){
-        video.addFrame(HELLO_WORLD_FRAME);
+        video.addFrame(FRAME);
       }
       await video.end();
       let textInVideo=await Util.recognizeTextInVideo(VIDEO_PATH);
-      expect(textInVideo).toContain('hello world')
+
+      expect(textInVideo).toContain(TEXT_IN_FRAME)
       //fs.unlinkSync(VIDEO_PATH);
     }
     catch (exception){

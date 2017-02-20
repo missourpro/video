@@ -4,7 +4,6 @@ import * as path from "path";
 import Config from "../../src/config/index";
 import any = jasmine.any;
 const request=require('request-promise');
-//
 const ONE_MINUTE = 60 * 1000;
 jasmine.DEFAULT_TIMEOUT_INTERVAL = ONE_MINUTE;
 describe('App', () => {
@@ -31,7 +30,8 @@ describe('App', () => {
 
 
   });
-  fit('ScrapesWebpage', async ()=> {
+  it('ScrapesWebpage', async ()=> {
+    //TODO Figure out  how to catch errors without try-catch block
     try{
       //await fakeWebsite.start();
       //let uri=await fakeWebsite.getUri();

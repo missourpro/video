@@ -22,9 +22,6 @@ export default class Server {
     this.router=express.Router();
     this.usePlugins();
     this.registerRoutes();
-    /*this.app.post('/scrape',(req, res)=>{
-      res.send()
-    })*/
     this.startListening();
   }
 

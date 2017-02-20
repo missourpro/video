@@ -19,6 +19,7 @@ export default class Converter implements BrowserListener, VideoListener, ClockL
 
   browserPainted(frame: Buffer) {
     this.video.addFrame(frame);
+
     this.clock.timeoutAfter(Converter.NO_FRAME_LEFT_TIMEOUT);
   }
   videoEnded() {
