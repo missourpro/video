@@ -15,7 +15,7 @@
     "test:client:e2e": "protractor",
     "test:server:unit": "jasmine JASMINE_CONFIG_PATH=server/test/unit/jasmine.json",
     "test:server:integration": "electron ./server/test/integration/main.js",
-    "test:server:e2e": "jasmine JASMINE_CONFIG_PATH=server/test/e2e/jasmine.json --max_old_space_size=4096 --optimize_for_size --max_executable_size=4096 --stack_size=4096",
+    "test:server:e2e": "jasmine JASMINE_CONFIG_PATH=server/test/e2e/jasmine.json",
     "test:client:coverage": "ng test --code-coverage",
     "clean": "ionic-app-scripts clean",
     "build:client": "ionic-app-scripts build",
