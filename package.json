@@ -10,7 +10,7 @@
     "install:post": "yarn run install:post:test && yarn run install:post:server",
     "install:post:test": "webdriver-manager update",
     "test": "yarn run test:server",
-    "test:server": "yarn run test:server:unit && test:server:integration && test:server:e2e",
+    "test:server": "yarn run test:server:unit && yarn run test:server:integration && yarn run test:server:e2e",
     "test:client:unit": "ng test",
     "test:client:e2e": "protractor",
     "test:server:unit": "jasmine JASMINE_CONFIG_PATH=server/test/unit/jasmine.json",
