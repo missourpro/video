@@ -6,6 +6,8 @@ cache:
   yarn: true
   directories:
     - node_modules
+before_install:
+  - export LD_LIBRARY_PATH=/usr/lib/x86_64-linux-gnu/
 install:
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
