@@ -5,8 +5,14 @@ app.on('ready', ()=>{
   jasmine.loadConfigFile(__dirname+'/jasmine.json');
   try{
     jasmine.execute();
-    jasmine.onComplete(()=>{
-      process.exit(0);
+    jasmine.onComplete((passed)=>{
+      if(passed){
+        process.exit(0);
+      }
+      else{
+        process.exit(1);
+      }
+      app.quit();
     });
   }
   catch(exception){
