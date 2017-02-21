@@ -8,10 +8,9 @@ cache:
     - node_modules
 before_install:
   - export LD_LIBRARY_PATH=/usr/lib/x86_64-linux-gnu/
-install:
   - export DISPLAY=:99.0
-  - sh -e /etc/init.d/xvfb start
-  - sleep 3
+  - Xvfb :21 -screen 0 1024x768x24 +extension RANDR &
+install:
   - npm install -g yarn
   - yarn global add bower cordova ionic jasmine
   - yarn install

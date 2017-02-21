@@ -1,0 +1,24 @@
+environment:
+  matrix:
+    - node_version: "6"
+init:
+  - git config --global core.autocrlf input
+
+branches:
+  only:
+    - master
+cache:
+cache:
+  - node_modules
+  - "%LOCALAPPDATA%/Yarn"
+install:
+  - ps: Install-Product node $env:node_version
+  - yarn global add bower cordova ionic jasmine
+  - yarn install
+  - yarn run install:post
+  - bower install
+build_script:
+  - yarn run build:client
+test_script:
+  - node --version
+  - yarn run test
