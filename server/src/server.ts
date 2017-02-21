@@ -23,9 +23,10 @@ export default class Server {
     this.router=express.Router();
     this.usePlugins();
     this.registerRoutes();
+    this.start();
 
   }
-  async start(){
+  start(){
     this.startListening();
   }
   stop(){

@@ -5,6 +5,9 @@ app.on('ready', ()=>{
   jasmine.loadConfigFile(__dirname+'/jasmine.json');
   try{
     jasmine.execute();
+    jasmine.onComplete(()=>{
+      process.exit(0);
+    });
   }
   catch(exception){
     console.error(exception.stack);
