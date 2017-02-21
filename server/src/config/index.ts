@@ -6,7 +6,7 @@ export default class Config{
   static ROOT_PATH=APP_ROOT_PATH+'';
   static PUBLIC_PATH=path.join(Config.ROOT_PATH, 'www');
   static SERVER_HOST= 'localhost';
-  static SERVER_PORT= 3000;
+  static SERVER_PORT= 8080;
   static SERVER_URI=prependHttp(Config.SERVER_HOST+':'+Config.SERVER_PORT);
   static STORAGE_PATH = path.join(Config.ROOT_PATH,'storage');
   static FFMPEG_PATH = path.join(Config.ROOT_PATH,  'node_modules', 'ffmpeg', 'ffmpeg');

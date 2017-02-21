@@ -1,30 +1,28 @@
 import * as electron from "electron";
 import ConvertEndpoint from "./convert-endpoint";
 import Config from "../../src/config";
-const {Application} = require('spectron');
+const {app} = require('electron');
 const fs = require("fs");
 const path = require("path");
 import Util from '../util';
 import ScrapeEndpoint from "./scrape-endpoint";
+import Server from "../../src/server";
 export default class ApplicationRunner{
+  private server:Server;
   private app:any;
   private convertEndpoint: ConvertEndpoint=new ConvertEndpoint();
   private scrapeEndpoint: ScrapeEndpoint=new ScrapeEndpoint();
   constructor(){
-    this.app = new Application({
-      path: electron,
-      args: ['.']
-    });
+    this.server=new Server();
   }
 
   async start() {
-    await this.app.start().then(() => {
-      return this.app.client.waitUntilWindowLoaded()
-              .browserWindow.focus();//windowByIndex(1).browserWindow.focus();
-    });
+    //TODO
+    await Promise.resolve();
   }
   async stop() {
-    await this.app.stop();
+    //TODO
+    await Promise.resolve();
   }
   async convertDynamicHtmlToVideo(html:string){
     await this.convertEndpoint.post(html);
@@ -40,7 +38,7 @@ export default class ApplicationRunner{
   }
 
 
-  hasWindowWithTitle(title:string) {
+  showsWindowWithTitle(title:string) {
 
   }
 

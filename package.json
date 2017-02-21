@@ -6,8 +6,8 @@
   "private": true,
   "scripts": {
     "postinstall": "",
-    "install:post:server": "ffbinaries --output=./node_modules/ffmpeg",
     "install:post": "yarn run install:post:test && yarn run install:post:server",
+    "install:post:server": "ffbinaries --output=./node_modules/ffmpeg",
     "install:post:test": "webdriver-manager update",
     "test": "yarn run test:server",
     "test:server": "yarn run test:server:unit && yarn run test:server:integration && yarn run test:server:e2e",
@@ -15,7 +15,7 @@
     "test:client:e2e": "protractor",
     "test:server:unit": "jasmine JASMINE_CONFIG_PATH=server/test/unit/jasmine.json",
     "test:server:integration": "electron ./server/test/integration/main.js",
-    "test:server:e2e": "jasmine JASMINE_CONFIG_PATH=server/test/e2e/jasmine.json",
+    "test:server:e2e": "electron ./server/test/e2e/main.js",
     "test:client:coverage": "ng test --code-coverage",
     "clean": "ionic-app-scripts clean",
     "build:client": "ionic-app-scripts build",
