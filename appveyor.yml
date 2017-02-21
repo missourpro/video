@@ -8,7 +8,6 @@ branches:
   only:
     - master
 cache:
-cache:
   - node_modules
   - "%LOCALAPPDATA%/Yarn"
 install:
