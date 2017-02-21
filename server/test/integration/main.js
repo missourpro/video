@@ -6,12 +6,7 @@ app.on('ready', ()=>{
   try{
     jasmine.execute();
     jasmine.onComplete((passed)=>{
-      if(passed){
-        process.exit(0);
-      }
-      else{
-        process.exit(1);
-      }
+      process.on('exit',()=>{process.exit(passed?0:1)});
       app.quit();
     });
   }
