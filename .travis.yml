@@ -1,13 +1,7 @@
 sudo: false
-dist: trusty
 language: node_js
 node_js:
   - "6"
-addons:
-  apt:
-    packages:
-      - xvfb
-      - google-chrome-stable
 cache:
   yarn: true
   directories:
