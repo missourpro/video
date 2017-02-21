@@ -26,7 +26,7 @@ export default class Server {
     this.start();
 
   }
-  start(){
+  private start(){
     this.startListening();
   }
   stop(){
