@@ -9,7 +9,7 @@
     "install:post": "yarn run install:post:test && yarn run install:post:server",
     "install:post:server": "ffbinaries --output=./node_modules/ffmpeg",
     "install:post:test": "webdriver-manager update",
-    "test": "yarn run test:server:e2e",
+    "test": "yarn run test:server:unit",
     "test:server": "yarn run test:server:unit && yarn run test:server:integration && yarn run test:server:e2e",
     "test:client:unit": "ng test",
     "test:client:e2e": "protractor",
