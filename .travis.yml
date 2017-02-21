@@ -9,7 +9,7 @@ cache:
 before_install:
   - export LD_LIBRARY_PATH=/usr/lib/x86_64-linux-gnu/
   - export DISPLAY=':99.0'
-  - Xvfb :99 -screen 0 1024x768x24 +extension RANDR & > /dev/null 2>&1 &
+  - Xvfb +extension RANDR :99 -screen 0 1024x768x24  & > /dev/null 2>&1 &
 install:
   - npm install -g yarn
   - yarn global add bower cordova ionic jasmine
