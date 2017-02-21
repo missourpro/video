@@ -31,7 +31,7 @@ describe('App', () => {
 
   });
   it('ScrapesWebpage', async ()=> {
-    //TODO Figure out  how to catch errors without try-catch block
+    //TODO Figure out  how to catch errors thrown by server without try-catch block
     try{
       //await fakeWebsite.start();
       //let uri=await fakeWebsite.getUri();
