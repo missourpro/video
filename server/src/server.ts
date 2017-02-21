@@ -16,15 +16,23 @@ export default class Server {
   private router: express.Router;
   static readonly PORT: number=Config.SERVER_PORT;
   static readonly PUBLIC_PATH: string=Config.PUBLIC_PATH;
+  private static TO_BE_GARBAGE_COLLECTED: http.Server = null;
 
   constructor(){
     this.app=express();
     this.router=express.Router();
     this.usePlugins();
     this.registerRoutes();
+
+  }
+  async start(){
     this.startListening();
   }
-
+  stop(){
+    this.server.close(()=>{
+      this.server=Server.TO_BE_GARBAGE_COLLECTED;
+    });
+  }
   private startListening() {
     this.server=this.app.listen(Server.PORT, function () {
       console.log('Server listening on port ' + Server.PORT );
