@@ -18,21 +18,11 @@ describe('App', () => {
     await app.stop();
   });
 
-  it('ConvertsDynamicHtmlToVideo', async ()=>{
-    try{
+  fit('ConvertsDynamicHtmlToVideo', async ()=>{
       await app.convertDynamicHtmlToVideo(SLIDESHOW_HTML);
       await app.hasCreatedVideoContainingText(TEXT);
-    }
-    catch (exception){
-      console.error(exception.stack);
-      throw exception;
-    }
-
-
   });
   it('ScrapesWebpage', async ()=> {
-    //TODO Figure out  how to catch errors thrown by server without try-catch block
-    try{
       //await fakeWebsite.start();
       //let uri=await fakeWebsite.getUri();
       let uri='http://www.hespress.com';
@@ -48,10 +38,7 @@ describe('App', () => {
       //await fakeWebsite.hasReceivedRequestFor('/webpage')
       //await app.hasReceivedHtmlResponse(WEBPAGE_HTML);
       //await app.hasExtractedTextFromWebpage(TEXT);
-    }
-    catch (exception){
-      console.error(exception.stack);
-      throw exception;
-    }
+
+
   });
 });
