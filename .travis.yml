@@ -1,4 +1,7 @@
+os:
+  - osx
 sudo: required
+dist: trusty
 language: node_js
 node_js:
   - "6"
@@ -7,10 +10,10 @@ cache:
   directories:
     - node_modules
 before_install:
-  - export LD_LIBRARY_PATH=/usr/lib/x86_64-linux-gnu/
-  - export DISPLAY=':99.0'
-  - Xvfb +extension RANDR :99 -screen 0 1024x768x24  & > /dev/null 2>&1 &
+
 install:
+  - export DISPLAY=':99.0'
+  - Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
   - npm install -g yarn
   - yarn global add bower cordova ionic jasmine
   - yarn install
