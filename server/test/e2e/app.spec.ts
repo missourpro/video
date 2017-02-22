@@ -18,7 +18,7 @@ describe('App', () => {
     await app.stop();
   });
 
-  fit('ConvertsDynamicHtmlToVideo', async ()=>{
+  it('ConvertsDynamicHtmlToVideo', async ()=>{
       await app.convertDynamicHtmlToVideo(SLIDESHOW_HTML);
       await app.hasCreatedVideoContainingText(TEXT);
   });
