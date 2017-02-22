@@ -33,9 +33,7 @@ describe('App', () => {
       //await request(uri+endpoint);
       await app.scrapeWebpage(uri+endpoint);//uri+endpoint);
 
-
-      //fesnews.done();
-      //await fakeWebsite.hasReceivedRequestFor('/webpage')
+     //await fakeWebsite.hasReceivedRequestFor('/webpage')
       //await app.hasReceivedHtmlResponse(WEBPAGE_HTML);
       //await app.hasExtractedTextFromWebpage(TEXT);
 
