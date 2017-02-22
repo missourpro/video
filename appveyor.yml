@@ -13,7 +13,7 @@ cache:
   - "%LOCALAPPDATA%/Yarn"
 install:
   - ps: Install-Product node $env:nodejs_version
-  - yarn global add bower cordova ionic jasmine
+  - node install -g yarn cordova ionic jasmine bower
   - yarn install
   - yarn run install:post
   - bower update
