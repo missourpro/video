@@ -14,8 +14,7 @@ before_install:
 install:
   - export DISPLAY=':99.0'
   - Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
-  - npm install -g yarn
-  - yarn global add bower cordova ionic jasmine
+  - npm install -g yarn bower cordova ionic jasmine
   - yarn install
   - yarn run install:post
   - bower install

@@ -16,7 +16,7 @@ install:
   - npm install -g yarn cordova ionic jasmine bower
   - yarn install
   - yarn run install:post
-  - bower update
+  - bower install
 build_script:
   - yarn run build:client
 test_script:
