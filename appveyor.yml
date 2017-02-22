@@ -1,6 +1,7 @@
+os: Visual Studio 2015
 environment:
   matrix:
-    - node_version: "6"
+    - nodejs_version: "6.9.5"
 init:
   - git config --global core.autocrlf input
 
@@ -11,11 +12,11 @@ cache:
   - node_modules
   - "%LOCALAPPDATA%/Yarn"
 install:
-  - ps: Install-Product node $env:node_version
+  - ps: Install-Product node $env:nodejs_version
   - yarn global add bower cordova ionic jasmine
   - yarn install
   - yarn run install:post
-  - bower install
+  - bower update
 build_script:
   - yarn run build:client
 test_script:
