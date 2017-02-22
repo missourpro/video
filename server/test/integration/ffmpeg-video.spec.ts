@@ -28,16 +28,15 @@ describe('FfmpegVideo', () => {
       expect(videoListener.videoEnded).toHaveBeenCalled();
 
   });
-  it('addsFrame',async ()=>{
+  it('addsFrames',async ()=>{
 
       let video:Video =new FfmpegVideo();
       for(let i=0; i<10; i++){
         video.addFrame(FRAME);
       }
       await video.end();
-      //let textInVideo=await Util.recognizeTextInVideo(VIDEO_PATH);
-      let textInVideo='hello world'
-      expect(textInVideo).toContain(HELLO_WORLD)
+      let textInVideo=await Util.recognizeTextInVideo(VIDEO_PATH);
+      expect(textInVideo).toContain(HELLO_WORLD);
       //fs.unlinkSync(VIDEO_PATH);
 
 

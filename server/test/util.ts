@@ -13,11 +13,11 @@ export default class Util{
     return text;
   }
   static async recognizeTextInImage (imagePath:string) : Promise<string> {
-  //let result = await Tesseract.recognize(imagePath);
-  //console.log('text recognized --' + result.text + '--');
-  //return result.text
-  return await Promise.resolve('hello world');
-}
+    let result = await Tesseract.recognize(imagePath);
+    console.log('text recognized --' + result.text + '--');
+    Tesseract.terminate();
+    return result.text
+  }
   static async extractFrameFromVideo(videoPath:string, timemark:string = Util.FRAME_TIMEMARK): Promise<string>{
 
   const SCREENSHOT_FOLDER = Config.STORAGE_PATH;
