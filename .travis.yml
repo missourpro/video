@@ -1,7 +1,6 @@
 os:
   - osx
-sudo: required
-dist: trusty
+sudo: false
 language: node_js
 node_js:
   - "6"
