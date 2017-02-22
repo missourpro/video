@@ -7,7 +7,7 @@ import * as path from "path";
 import Util from '../util';
 
 jasmine.DEFAULT_TIMEOUT_INTERVAL=30000;
-describe('FfmpegVideo', () => {
+xdescribe('FfmpegVideo', () => {
   const UNUSED_FRAME = new Buffer(0);
   let FRAME:Buffer=new Buffer(fs.readFileSync(path.join(__dirname, '/fixtures/hello-world.jpeg')));
   const VIDEO_PATH:string=FfmpegVideo.VIDEO_PATH;

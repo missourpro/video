@@ -17,5 +17,7 @@ install:
   - yarn run install:post
   - bower install
   - yarn run build:client
+script:
+  - yarn run test
 notifications:
   slack: missourpro:PR6GCxcqcAQ06gne1aVkS08n
