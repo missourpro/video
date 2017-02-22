@@ -1,7 +1,7 @@
 import ElectronBrowser from "../../src/electron-browser";
 import {Browser} from "../../src/browser";
 import ApplicationDriver from "./application-driver";
-describe('ElectronBrowser', ()=> {
+xdescribe('ElectronBrowser', ()=> {
   const app=new ApplicationDriver();
   beforeEach(async() => {
 
@@ -9,7 +9,7 @@ describe('ElectronBrowser', ()=> {
   afterEach(async() => {
 
   });
-  it('opensWindow', async ()=>{
+  xit('opensWindow', async ()=>{
     let browser:Browser=new ElectronBrowser();
     browser.open('');
     app.showsWindow();

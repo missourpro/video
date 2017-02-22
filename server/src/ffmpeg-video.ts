@@ -78,7 +78,4 @@ export default class FfmpegVideo implements Video {
     return new Promise(end)
   }
 
-  private frameAdded() {
-    this.ffmpeg.stdin.end();
-  }
 }
