@@ -70,6 +70,7 @@ export default class FfmpegVideo implements Video {
         this.ffmpeg.stdin.end();
         this.ffmpeg.on('exit',  ()=>{
           this.videoListener.videoEnded();
+          console.log('ffmpeg exited');
           resolve();
         });
 

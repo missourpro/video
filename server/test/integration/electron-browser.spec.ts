@@ -1,7 +1,7 @@
 import ElectronBrowser from "../../src/electron-browser";
 import {Browser} from "../../src/browser";
 import ApplicationDriver from "./application-driver";
-describe('ElectronBrowser', ()=> {
+xdescribe('ElectronBrowser', ()=> {
   const app=new ApplicationDriver();
   beforeEach(async() => {
 
