@@ -1,31 +1,19 @@
 import {ConverterListener} from "./converter-listener";
-import {Browser} from "./browser";
 import {Video} from "./video";
-import {BrowserListener} from "./browser-listener";
-import {VideoListener} from "./video-listener";
-import Clock from "./clock";
-import {ClockListener} from "./clock-listener";
-export default class Converter implements BrowserListener, VideoListener, ClockListener{
-  private static NO_FRAME_LEFT_TIMEOUT = 1000;
-  constructor(private converterListener: ConverterListener, private browser: Browser, private video: Video,private clock: Clock){
-    this.browser.setBrowserListener(this);
-    this.video.setVideoListener(this);
-    this.clock.setClockListener(this);
-
+import Renderer from "./renderer";
+import Recorder from "./recorder";
+import {RecorderListener} from "./recorder-listener";
+export default class Converter implements   RecorderListener{
+  constructor(private converterListener: ConverterListener, private renderer: Renderer, private recorder: Recorder){
+    this.renderer.setFrameHandler(this.recorder);
+    this.recorder.setRecorderListener(this);
   }
   convert(html:string){
-    this.browser.open(html);
+    this.renderer.render(html);
   }
 
-  browserPainted(frame: Buffer) {
-    this.video.addFrame(frame);
-
-    this.clock.timeoutAfter(Converter.NO_FRAME_LEFT_TIMEOUT);
-  }
-  videoEnded() {
+  recorded(video) {
     this.converterListener.converted();
   }
-  clockTimeout(){
-    this.video.end();
-  }
+
 }
