@@ -12,7 +12,8 @@ export default class ConvertRoute extends Route implements ConverterListener{
 
   convert(){
     console.log('converting');
-    let converter: Converter=new Converter(this, new Renderer(), new FfmpegVideo(), new Clock());
+    let converter: Converter=new Converter(this, new Renderer(), new Recorder(new Tape('path'));
+
     //TODO ensure html is not empty
     converter.convert(this.get('html'));
   }
