@@ -17,8 +17,7 @@ export class WebpagePage {
               private paragraphizer: Paragraphizer,
               private toast: ToastController,
               private app: App,
-              private http: Http,
-              private config: Config) {
+              private http: Http) {
   }
 
   ionViewDidLoad() {
@@ -30,7 +29,7 @@ export class WebpagePage {
     let data={
       uri: this.uri
     };
-    this.http.post('${{Config.SERVER_URI}}/scrape',JSON.stringify(data) ,{headers:headers} )
+    this.http.post(Config.SERVER_URI+'/scrape',JSON.stringify(data) ,{headers:headers} )
       .subscribe(
       (response: Response)=>{
         this.nav.push(PreviewPage, {

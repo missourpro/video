@@ -32,7 +32,13 @@ export default class Scraper {
         let result: any = {};
         Object.keys(page).forEach(key => {
           if (typeof page[key] === 'string') {
-            result[key] = root.find(page[key]).text();
+            let element=root.find(page[key]);
+            if(element.is('img')){
+              result[key]=element.attr('src');
+            } else {
+              result[key] = element.text();
+            }
+
           } else {
             let listSelector = page[key]['selector'];
             let itemSelector = page[key]['comment']['selector'];
@@ -41,7 +47,7 @@ export default class Scraper {
             result[key] = [];
             root.find(listSelector).find(itemSelector)
               .each((index, element) => {
-              let child: any = {'hi':'hi'};
+              let child: any = {};
               Object.keys(item).forEach(key => {
                 child[key] = cheerio(item[key], element).text();
               });

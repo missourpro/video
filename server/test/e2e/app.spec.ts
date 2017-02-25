@@ -46,6 +46,8 @@ describe('App', () => {
     let result=await app.scrapeWebpage(uri+endpoint);
     expect(result.page.title.length>0).toBeTruthy();
     expect(result.page.body.length>0).toBeTruthy();
+    expect(result.page.image.length>0).toBeTruthy();
+    expect(result.page.image.indexOf('http')===0).toBeTruthy();
     expect(result.page.comments).toBeArray();
     expect(result.page.comments[0]['body'].length>0).toBeTruthy();
     expect(result.page.comments[0]['date'].length>0).toBeTruthy();
