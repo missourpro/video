@@ -2,6 +2,7 @@ import { Component} from '@angular/core';
 import { Http, Headers} from '@angular/http';
 import { NavController, NavParams } from 'ionic-angular';
 import * as $ from 'jquery';
+import Config from "../../providers/config";
 @Component({
   selector: 'page-preview',
   templateUrl: 'preview.html'
@@ -16,7 +17,7 @@ export class PreviewPage {
     let data={
       html: frames[0].document.documentElement.outerHTML
     };
-    this.http.post('//localhost:3000/convert',JSON.stringify(data) ,{headers:headers} )
+    this.http.post(Config.SERVER_URI+'/convert',JSON.stringify(data) ,{headers:headers} )
       .subscribe(
         data => {
           $('body').append($('<div id="result"></div>'));

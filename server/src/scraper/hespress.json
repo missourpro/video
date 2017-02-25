@@ -1,0 +1,17 @@
+{
+  "title":".page_title",
+  "body": "#article_body",
+  "author": ".story_author",
+  "date":".story_date",
+  "image" : ".image > img",
+  "comments":{
+    "selector": "#comment_list",
+    "comment": {
+        "selector": ".comment_holder",
+        "body": ".comment_text",
+        "date": ".comment_date",
+        "author": ".comment_header"
+    }
+  }
+
+}
