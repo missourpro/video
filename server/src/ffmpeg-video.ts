@@ -19,6 +19,7 @@ export default class FfmpegVideo implements Video {
       '-f', 'image2pipe',
       '-r', ''+ (+FfmpegVideo.FRAME_RATE),
       '-i', '-',
+      '-pix_fmt','yuv420p',
       FfmpegVideo.VIDEO_PATH
     ];
     this.ffmpeg = ChildProcess.spawn(FfmpegVideo.FFMPEG_PATH, args);

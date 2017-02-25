@@ -43,7 +43,7 @@ export default class ElectronBrowser implements Browser{
     //TODO Figure out how to use data url  instead(scripts and stylesheets are not loaded!!)
     // this.browserWindow.loadURL("data:text/html;charset=utf-8,"+encodeURI(html));
   }
-
+o;
   close() {
     this.browserWindow.close();
     this.browserWindow.on('closed',()=>{
