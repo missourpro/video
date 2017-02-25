@@ -3,6 +3,7 @@ import {NavController, ToastController, App} from 'ionic-angular';
 import {Paragraphizer} from "../../providers/paragraphizer";
 import {PreviewPage} from "../preview/preview";
 import {Http, Response, Headers} from "@angular/http";
+import  Config from "../../providers/config";
 
 
 @Component({
@@ -16,7 +17,8 @@ export class WebpagePage {
               private paragraphizer: Paragraphizer,
               private toast: ToastController,
               private app: App,
-              private http: Http) {
+              private http: Http,
+              private config: Config) {
   }
 
   ionViewDidLoad() {
@@ -28,7 +30,7 @@ export class WebpagePage {
     let data={
       uri: this.uri
     };
-    this.http.post('//localhost:3000/scrape',JSON.stringify(data) ,{headers:headers} )
+    this.http.post('${{Config.SERVER_URI}}/scrape',JSON.stringify(data) ,{headers:headers} )
       .subscribe(
       (response: Response)=>{
         this.nav.push(PreviewPage, {

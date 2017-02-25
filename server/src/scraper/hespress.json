@@ -1,0 +1,14 @@
+{
+  "title":".page_title",
+  "body": "#article_body",
+  "comments":{
+    "selector": "#comment_list",
+    "comment": {
+        "selector": ".comment_holder",
+        "body": ".comment_text",
+        "date": ".comment_date",
+        "author": ".comment_header"
+    }
+  }
+
+}

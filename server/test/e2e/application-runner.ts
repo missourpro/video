@@ -44,7 +44,7 @@ export default class ApplicationRunner{
 
 
   async scrapeWebpage(uri: string) {
-    await this.scrapeEndpoint.post(uri);
+    return await this.scrapeEndpoint.post(uri);
 
   }
 

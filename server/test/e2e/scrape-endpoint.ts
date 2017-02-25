@@ -5,7 +5,7 @@ export default class ScrapeEndpoint{
   private static readonly  ROUTE: string='/scrape';
   public static readonly URI:string=Config.SERVER_URI + ScrapeEndpoint.ROUTE;
   async post(uri:string){
-    await request({
+    return await request({
       method: 'POST',
       uri: ScrapeEndpoint.URI,
       body: {
