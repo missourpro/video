@@ -1,4 +1,5 @@
 import * as path from "path";
+import * as fs from "fs";
 const APP_ROOT_PATH=require("app-root-path");
 const prependHttp=require('prepend-http');
 export default class Config{
@@ -11,4 +12,6 @@ export default class Config{
   static STORAGE_PATH = path.join(Config.ROOT_PATH,'storage');
   static FFMPEG_PATH = path.join(Config.ROOT_PATH,  'node_modules', 'ffmpeg', 'ffmpeg');
   static FFPROBE_PATH= path.join(Config.ROOT_PATH,  'node_modules', 'ffmpeg', 'ffprobe');
+  static SERVER_KEY=fs.readFileSync(path.join(Config.ROOT_PATH, 'server.key') );
+  static SERVER_CERTIFICATE=fs.readFileSync(path.join(Config.ROOT_PATH, 'server.crt') );
 }

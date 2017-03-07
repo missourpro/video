@@ -5,17 +5,30 @@
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
+  <!--TODO Make all paths relative to public www path-->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/css/reveal.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/css/theme/black.css">
 </head>
 <body>
 <div class="reveal">
   <div class="slides" data-autoslide="1000" >
+    {{#each slides}}
+      <section><p>{{this}}</p></section>
+    {{/each}}
   </div>
 </div>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/js/reveal.js"></script>
+<script>
+  window.onload=function () {
+    Reveal.initialize({
+      postMessage: true,
+      postMessageEvents: true,
+      transition: 'zoom',
+    });
+  };
 
+</script>
 </body>
+
 </html>
-
-

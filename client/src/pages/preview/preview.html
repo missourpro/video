@@ -9,16 +9,16 @@
 -->
 <ion-content >
 
-    <previewer>
-      <slideshow>
-        <slide *ngFor="let paragraph of paragraphs" >
-          {{paragraph}}
-        </slide>
-      </slideshow>
-    </previewer>
+    <!--<previewer>-->
+      <!--<slideshow>-->
+        <!--<slide *ngFor="let paragraph of paragraphs" >-->
+          <!--{{paragraph}}-->
+        <!--</slide>-->
+      <!--</slideshow>-->
+    <!--</previewer>-->
 
-    <!--<iframe id="slideshow" frameborder="0" overflow-scroll="true" >-->
-    <!--</iframe>-->
+    <iframe id="slideshow" [srcdoc]="html|safe" frameborder="0" overflow-scroll="true" >
+    </iframe>
 
 </ion-content>
 

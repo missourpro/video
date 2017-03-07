@@ -1,7 +1,10 @@
 page-preview {
-
-
-
-
-
+  height: 100%;
+  width: 100%;
+  display: table;
+  iframe{
+    display: table-row;
+    height: 100%;
+    width: 100%;
+  }
 }

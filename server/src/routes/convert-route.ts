@@ -16,7 +16,7 @@ export default class ConvertRoute extends Route implements ConverterListener{
     converter.convert(this.get('html'));
   }
   converted(): void {
-    this.ok();
+    this.json({'path':'test.mp4'});
   }
 
 }

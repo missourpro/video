@@ -7,11 +7,14 @@ const path = require("path");
 import Util from '../util';
 import ScrapeEndpoint from "./scrape-endpoint";
 import Server from "../../src/server";
+import WatchEndpoint from "./watch-endpoint";
+import FakeWebsite from "./fake-website";
 export default class ApplicationRunner{
   private server:Server;
   private app:any;
   private convertEndpoint: ConvertEndpoint=new ConvertEndpoint();
   private scrapeEndpoint: ScrapeEndpoint=new ScrapeEndpoint();
+  private watchEndpoint: WatchEndpoint=new WatchEndpoint;
   constructor(){
     this.server=new Server();
   }
@@ -34,7 +37,7 @@ export default class ApplicationRunner{
     let recognizedText=await Util.recognizeTextInVideo(VIDEO_PATH);
 
     expect(recognizedText).toContain(text);
-    //fs.unlinkSync(VIDEO_PATH);
+    fs.unlinkSync(VIDEO_PATH);
   }
 
 
@@ -53,6 +56,14 @@ export default class ApplicationRunner{
   }
 
   hasExtractedTextFromWebpage(text: string) {
+
+  }
+
+  watchWebsiteForChanges(uri:string) {
+    return this.watchEndpoint.post(uri);
+  }
+
+  showsWebsiteChanged(uri: string) {
 
   }
 }

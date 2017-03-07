@@ -1,9 +1,10 @@
 import MainWindow from './main-window';
 import Server from './server';
 import {app} from 'electron';
+import IpcServer from "./ipc-server";
 export default class Main{
   private ui:MainWindow;
-  private server: Server;
+  private server;
   private static  app: Electron.App=app;
   constructor(){
     this.startUserInterface();
@@ -18,7 +19,7 @@ export default class Main{
 
   }
   private startServer(){
-    this.server=new Server();
+    this.server=new IpcServer();
   }
 
 }

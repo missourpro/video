@@ -3,6 +3,7 @@ import * as fs from "fs";
 import * as path from "path";
 import Config from "../../src/config/index";
 import any = jasmine.any;
+import FakeWebsite from "./fake-website";
 const request=require('request-promise');
 const ONE_MINUTE = 60 * 1000;
 jasmine.DEFAULT_TIMEOUT_INTERVAL = ONE_MINUTE;
@@ -10,12 +11,16 @@ describe('App', () => {
   const TEXT:string = 'hello world';
   const SLIDESHOW_HTML:string =fs.readFileSync(path.resolve(__dirname, 'fixtures/slideshow.html'), 'utf8').replace(new RegExp('{{PUBLIC_PATH}}', 'g'), Config.PUBLIC_PATH);
   const app = new ApplicationRunner();
+
   beforeEach(async ()=> {
     await app.start();
+
+    jasmine.clock().install();
   });
 
   afterEach(async ()=> {
     await app.stop();
+    jasmine.clock().uninstall();
   });
 
   it('ConvertsDynamicHtmlToVideo', async ()=>{
@@ -39,7 +44,7 @@ describe('App', () => {
 
 
   });
-  fit('ScrapesHespress', async ()=> {
+  it('ScrapesHespress', async ()=> {
 
     let uri='http://www.hespress.com';
     let endpoint='/societe/339704.html';
@@ -52,6 +57,15 @@ describe('App', () => {
     expect(result.page.comments[0]['body'].length>0).toBeTruthy();
     expect(result.page.comments[0]['date'].length>0).toBeTruthy();
     expect(result.page.comments[0]['author'].length>0).toBeTruthy();
-
+  });
+  fit('WatchesWebsiteForChanges', async ()=>{
+    // const FAKE_URI='www.fake.com';
+    // let fakeWebsite:FakeWebsite=new FakeWebsite(FAKE_URI);
+    // await fakeWebsite.start();
+    // app.watchWebsiteForChanges(FAKE_URI);
+    // fakeWebsite.reply('/','<html><body></body></html>');
+    // fakeWebsite.reply('/','<html><body>hello world<br>hello world</body></html>');
+    // jasmine.clock().tick(10000);
+    // await app.hasCreatedVideoContainingText('hello world');
   });
 });

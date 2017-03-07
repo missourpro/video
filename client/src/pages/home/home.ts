@@ -14,18 +14,19 @@ export class HomePage {
   }
   preview(){
     let paragraphs : Array<string>;
-    paragraphs = this.paragraphizer.paragraphize(this.post);
+    //paragraphs = this.paragraphizer.paragraphize(this.post);
     //check text is valid
-    if(paragraphs.length === 0){
-      this.notify('Please enter some text');
-
-    }
-    else {
+    // if(paragraphs.length === 0){
+    //   this.notify('Please enter some text');
+    //
+    // }
+    //else {
       this.nav.push(PreviewPage, {
-        paragraphs:paragraphs
+        //paragraphs:paragraphs
+        text:this.post
       });
       this.app.setTitle('Preview');
-    }
+    //}
   }
 
   private notify(message) {

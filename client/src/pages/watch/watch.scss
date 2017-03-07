@@ -1,0 +1,13 @@
+page-watch {
+  .watcher{
+    .running{
+      background: color($colors, success, base);
+    }
+    .paused{
+      background: color($colors, inactive, base);
+    }
+    .failed{
+      background: color($colors, warning, base);
+    }
+  }
+}

@@ -9,8 +9,9 @@ import Response = express.Response;
 import NextFunction = express.NextFunction;
 import {Route} from "./routes/route";
 import RouteProvider from "./routes/route-provider";
+import {ipcMain} from "electron";
+import ConvertRoute from "./ipc/convert-route";
 export default class Server {
-
   private server:http.Server;
   private app:express.Application;
   private router: express.Router;
@@ -39,10 +40,7 @@ export default class Server {
       console.log('Server listening on port ' + Server.PORT );
     });
   }
-
-
   private  registerRoutes() {
-
     let routeProvider:RouteProvider=new RouteProvider();
     let routes:Array<new(...args: any[]) => Route>=routeProvider.getRoutes();
     routes.forEach((routeClass)=>{
@@ -53,10 +51,7 @@ export default class Server {
         route.execute();
       });
     });
-
   }
-
-
   private usePlugins() {
     this.app.use(this.router);
     this.app.use(cors());
@@ -64,5 +59,4 @@ export default class Server {
     this.app.use(bodyParser.urlencoded({extended: true}));
     this.app.use(express.static(Server.PUBLIC_PATH));
   }
-
 }
