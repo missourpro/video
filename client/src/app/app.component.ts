@@ -4,14 +4,14 @@ import { Platform, MenuController, Nav, App } from 'ionic-angular';
 import { HomePage } from '../pages/home/home';
 import {SettingsPage} from '../pages/settings/settings';
 import {WebpagePage} from "../pages/webpage/webpage";
-import {WatchPage} from "../pages/watch/watch";
+import {BotFactoryPage} from "../pages/robotics/bot-factory";
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = WatchPage;
+  rootPage: any = BotFactoryPage;
   pages: Array<{id: string, title: string, component: any}>;
 
   constructor(public platform: Platform,  public menu: MenuController,private app: App) {
@@ -21,7 +21,7 @@ export class MyApp {
     this.pages = [
       {id:'home', title: 'Home', component: HomePage },
       {id:'webpage', title: 'Webpage', component: WebpagePage },
-      {id:'watch', title: 'Watch', component: WatchPage },
+      {id:'robotics', title: 'Robotics', component: BotFactoryPage },
       {id:'settings', title: 'Settings', component: SettingsPage }
     ];
   }

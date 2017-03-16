@@ -6,7 +6,7 @@ const fs = require("fs");
 const path = require("path");
 import Util from '../util';
 import ScrapeEndpoint from "./scrape-endpoint";
-import Server from "../../src/server";
+import Server from "../../src/http-server";
 import WatchEndpoint from "./watch-endpoint";
 import FakeWebsite from "./fake-website";
 export default class ApplicationRunner{

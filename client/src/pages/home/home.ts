@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { NavController, ToastController, App} from 'ionic-angular';
 import {Paragraphizer} from "../../providers/paragraphizer";
 import {PreviewPage} from "../preview/preview";
-//import {ipcRenderer, remote} from 'electron';
 declare var __dirname;
 @Component({
   selector: 'page-home',
@@ -13,7 +12,7 @@ export class HomePage {
   constructor(public nav: NavController, private paragraphizer: Paragraphizer,private toast: ToastController,private app: App) {
   }
   preview(){
-    let paragraphs : Array<string>;
+    //let paragraphs : Array<string>;
     //paragraphs = this.paragraphizer.paragraphize(this.post);
     //check text is valid
     // if(paragraphs.length === 0){
@@ -29,15 +28,15 @@ export class HomePage {
     //}
   }
 
-  private notify(message) {
-
-    let toast = this.toast.create({
-      position: 'top',
-      message: message,
-      duration: 3000
-    });
-    toast.present();
-  }
+  // private notify(message) {
+  //
+  //   let toast = this.toast.create({
+  //     position: 'top',
+  //     message: message,
+  //     duration: 3000
+  //   });
+  //   toast.present();
+  // }
 
 }
 

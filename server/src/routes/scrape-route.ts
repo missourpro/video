@@ -1,7 +1,7 @@
 import {Route} from "./route";
 
 import {ScraperListener} from "../scraper/scraper-listener";
-import Scraper from "../scraper/index";
+import Scraper from "../scraper/scraper";
 export default class ScrapeRoute extends Route implements ScraperListener{
   route='/scrape';
   method=Route.POST;
@@ -9,8 +9,8 @@ export default class ScrapeRoute extends Route implements ScraperListener{
   scrape(){
     console.log('Scraping');
 
-    let scraper: Scraper=new Scraper(this);
-
+    let scraper: Scraper=new Scraper();
+    scraper.setScraperListener(this);
     //TODO ensure html is not empty
     scraper.scrape(this.get('uri'));
   }

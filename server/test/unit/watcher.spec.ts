@@ -1,4 +1,4 @@
-import Watcher from "../../src/watcher";
+import Watcher from "../../src/watcher/watcher";
 import Client from "../../src/watcher/client";
 import {WatcherListener} from "../../src/watcher/watcher-listener";
 import History from "../../src/watcher/history";

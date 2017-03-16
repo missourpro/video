@@ -1,34 +1,34 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
+import {HomePage } from '../pages/home/home';
 import {SettingsPage} from '../pages/settings/settings';
 import {Paragraphizer} from "../providers/paragraphizer";
 import {PreviewPage} from "../pages/preview/preview";
-import { SlideshowComponent } from '../components/slideshow/slideshow';
+import {SlideshowComponent } from '../components/slideshow/slideshow';
 import {SlideComponent} from "../components/slide/slide";
 import {SafePipe} from "../pipes/safe";
 import {PreviewerComponent} from "../components/previewer/previewer";
 import {WebpagePage} from "../pages/webpage/webpage";
-import {WatchPage} from "../pages/watch/watch";
-import Server from "../providers/server";
-import HttpTransport from "../providers/http-transport";
-import IpcTransport from "../providers/ipc-transport";
-import {CreateWatcherPage} from "../pages/watch/create-watcher";
 import {Storage}  from "@ionic/storage";
+import {WebsocketTransport} from "../services/client/websocket-tansport";
+import {Client} from "../services/client/client";
+import {RoboticsService} from "../services/robotics-service";
+import {BotFactoryPage} from "../pages/robotics/bot-factory";
+import {BotPage} from "../pages/robotics/bot";
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     SettingsPage,
     WebpagePage,
-    WatchPage,
-    CreateWatcherPage,
     PreviewPage,
+    BotFactoryPage,
+    BotPage,
     SlideshowComponent,
     SlideComponent,
     PreviewerComponent,
-    SafePipe
+    SafePipe,
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -40,8 +40,8 @@ import {Storage}  from "@ionic/storage";
     WebpagePage,
     SettingsPage,
     PreviewPage,
-    WatchPage,
-    CreateWatcherPage,
+    BotFactoryPage,
+    BotPage,
     SlideshowComponent,
     PreviewerComponent,
     SlideComponent
@@ -49,11 +49,11 @@ import {Storage}  from "@ionic/storage";
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler},
     Storage,
     Paragraphizer,
-    HttpTransport,
-    IpcTransport,
-    {provide: Server, useFactory: (transport)=>{
-      return new Server(transport);
-      }, deps: [IpcTransport]
+    WebsocketTransport,
+    RoboticsService,
+    {provide: Client, useFactory: (transport)=>{
+      return new Client(transport);
+      }, deps: [WebsocketTransport]
     }
   ]
 })

@@ -15,18 +15,18 @@
     "types": [
       "jasmine",
       "jasmine-jquery",
-      "node"
+      "node",
+      "socket.io-client"
     ],
     "typeRoots": [
-      "./node_modules/@types"
+      "node_modules/@types"
     ]
   },
   "include": [
     "client/src/**/*.ts"
   ],
   "exclude": [
-    "node_modules",
-    "src/e2e/**"
+    "node_modules"
   ],
   "compileOnSave": false,
   "atom": {

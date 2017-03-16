@@ -2,7 +2,7 @@ const {app, BrowserWindow, dialog} = require('electron');
 const Jasmine = require('jasmine');
 const Optimist=require('optimist');
 const path=require('path');
-
+require('reflect-metadata');
 //TODO Handle missing argument 'suite'
 const suite=Optimist.argv.suite;
 const jasmine = new Jasmine();

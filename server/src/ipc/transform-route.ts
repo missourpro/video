@@ -1,5 +1,5 @@
 import {Route} from "./route";
-import Transformer from "../transformer/index";
+import Transformer from "../transformer/transformer";
 import {Paragraphizer} from "../transformer/paragraphizer";
 import Page from "../scraper/page";
 export default class TransformRoute extends Route{

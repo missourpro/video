@@ -53,7 +53,8 @@ module.exports = {
   node: {
     fs: 'empty',
     net: 'empty',
-    tls: 'empty'
+    tls: 'empty',
+    tty: 'empty'
   },
   target:'electron-renderer'
 };

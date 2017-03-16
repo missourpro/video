@@ -44,7 +44,9 @@ export default class Util{
 };
   return <Promise<string>>new Promise(takeScreenshot);
 
-}}
+}
+
+}
 
 
 

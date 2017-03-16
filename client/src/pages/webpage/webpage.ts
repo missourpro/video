@@ -3,7 +3,7 @@ import {NavController, ToastController, App} from 'ionic-angular';
 import {Paragraphizer} from "../../providers/paragraphizer";
 import {PreviewPage} from "../preview/preview";
 import {Http, Response, Headers} from "@angular/http";
-import  Config from "../../providers/config";
+import  Config from "../../services/config";
 
 
 @Component({

@@ -13,16 +13,18 @@
     "sourceMap": true,
     "target": "es5",
     "types": [
-      "node"
+      "node",
+      "socket.io-client"
     ],
     "typeRoots": [
-      "../../node_modules/@types"
+      "node_modules/@types"
     ]
   },
   "include": [
     "./**/*.ts"
   ],
   "exclude": [
+    "node_modules"
   ],
   "compileOnSave": false,
   "atom": {

@@ -14,3 +14,4 @@ export default class History {
     return this.memory.length===0;
   }
 }
+

@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-navbar>
+    <ion-buttons start>
+      <button ion-button icon-only (click)="manufacture()">
+        <ion-icon name="add-circle"></ion-icon>
+        Manufacture
+      </button>
+    </ion-buttons>
+    <ion-title>Robotics</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+  <ion-card class="watcher" *ngFor="let bot of bots; let index=index">
+    <ion-item [class.running]="isStarted(index)" [class.paused]="isStopped(index)" [class.failed]="isFailed(index)">
+      <ion-icon name="eye" item-left large color="light"></ion-icon>
+      <h1 color="light">{{bot?.uri}}</h1>
+      <h2 color="light">{{bot?.createdAt?.toISOString()}}</h2>
+    </ion-item>
+    <ion-item>
+      <button ion-button icon-left clear item-left (click)="toggleBotState(index)">
+          <ng-container *ngIf="isStarted(index)">
+            <ion-icon name="pause"></ion-icon>
+            Pause
+          </ng-container>
+          <ng-container *ngIf="!isStarted(index)">
+            <ion-icon name="play"></ion-icon>
+            Start
+          </ng-container>
+      </button>
+      <button ion-button icon-left clear item-right color="danger"(click)="recycle(index)">
+        <ion-icon name="trash"></ion-icon>
+        Recycle
+    </button>
+    </ion-item>
+  </ion-card>
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
+  </ion-toolbar>
+</ion-footer>

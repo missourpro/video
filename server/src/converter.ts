@@ -7,7 +7,8 @@ import Clock from "./clock";
 import {ClockListener} from "./clock-listener";
 export default class Converter implements BrowserListener, VideoListener, ClockListener{
   private static NO_FRAME_LEFT_TIMEOUT = 1000;
-  constructor(private converterListener: ConverterListener, private browser: Browser, private video: Video,private clock: Clock){
+  private converterListener: ConverterListener;
+  constructor( private browser: Browser, private video: Video,private clock: Clock){
     this.browser.setBrowserListener(this);
     this.video.setVideoListener(this);
     this.clock.setClockListener(this);
@@ -27,5 +28,9 @@ export default class Converter implements BrowserListener, VideoListener, ClockL
   }
   clockTimeout(){
     this.video.end();
+  }
+
+  setConverterListener(converterListener: ConverterListener) {
+    this.converterListener=converterListener;
   }
 }

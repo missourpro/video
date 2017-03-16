@@ -3,7 +3,7 @@ import {WatcherListener} from "../watcher/watcher-listener";
 import WatchCommand from "../commands/watch-command";
 import CommandBus from "../commands/command-bus";
 import CommandProvider from "../commands/command-provider";
-import Watcher from "../watcher/index";
+import Watcher from "../watcher/watcher";
 import Client from "../watcher/client";
 import History from "../watcher/history";
 export default class WatchRoute extends Route implements WatcherListener{

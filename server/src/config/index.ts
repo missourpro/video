@@ -14,4 +14,6 @@ export default class Config{
   static FFPROBE_PATH= path.join(Config.ROOT_PATH,  'node_modules', 'ffmpeg', 'ffprobe');
   static SERVER_KEY=fs.readFileSync(path.join(Config.ROOT_PATH, 'server.key') );
   static SERVER_CERTIFICATE=fs.readFileSync(path.join(Config.ROOT_PATH, 'server.crt') );
+  //TODO rename ".bots"
+  static DATABASE_PATH: string=path.join(Config.STORAGE_PATH,'database.sqlite3');
 }
