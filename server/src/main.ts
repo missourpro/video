@@ -38,8 +38,6 @@ export default class Main implements WatcherListener{
 
   }
   private async startServer(){
-      let botFactory:BotFactory=Container.get(BotFactory);
-      await botFactory.open();
       this.server=new WebsocketServer();
   }
 

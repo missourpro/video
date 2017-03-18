@@ -46,6 +46,7 @@
     "@types/node-json-db": "0.0.1",
     "@types/socket.io": "^1.4.28",
     "@types/socket.io-client": "^1.4.29",
+    "@types/uuid": "^2.0.29",
     "animate.css": "3.5.2",
     "app-root-path": "^2.0.1",
     "bluebird": "3.4.7",
@@ -89,6 +90,7 @@
     "typedi": "^0.4.3",
     "typeorm": "0.0.9",
     "typeorm-typedi-extensions": "0.0.9",
+    "uuid": "^3.0.1",
     "vhost": "^3.0.2",
     "zone.js": "0.6.26"
   },

@@ -4,43 +4,50 @@ import {BotListener} from "../../robotics/bot-listener";
 import {Container} from "typedi";
 import BotFactory from "../../robotics/bot-factory";
 import Bot from "../../robotics/bot";
+import {BotId} from "../../robotics/bot-id";
+import {BotConfiguration} from "../../robotics/bot-configuration";
 
 export default class RoboticsController extends Controller implements BotListener{
   videoCreated() {
-
+    this.response.send({update:'video-created', path:''})
   }
-  async manufacture(){
+  manufacture(){
     let botFactory:BotFactory=Container.get(BotFactory);
-    let bot=await botFactory.manufacture(this.request.get('configuration'));
+    let configuration=new BotConfiguration();
+    configuration.uri=this.request.get('configuration').uri;
+    let bot=botFactory.manufacture(configuration);
     bot.setBotListener(this);
     this.response.send(JSON.parse(bot.serialize()));
   }
-  async recycle(){
+  recycle(){
     let botFactory:BotFactory=Container.get(BotFactory);
-    let bot:Bot=await botFactory.manufacturedBot(+this.request.get('identity'));
-    console.log('bot grabbed');
-    await botFactory.recycle(bot);
+    botFactory.recycle(new BotId(this.request.get('id')));
     console.log('bot recycled');
     this.response.send(true);
   }
-  async start(){
+  start(){
     let botFactory:BotFactory=Container.get(BotFactory);
-    let bot:Bot=await botFactory.manufacturedBot(+this.request.get('id'));
+    let bot:Bot=botFactory.manufacturedBot(new BotId(this.request.get('id')));
     bot.start();
     this.response.send(true);
   }
-  async stop(id:any){
+  stop(id:any){
     let botFactory:BotFactory=Container.get(BotFactory);
-    let bot:Bot=await botFactory.manufacturedBot(+this.request.get('id'));
+    let bot:Bot=botFactory.manufacturedBot(new BotId(this.request.get('id')));
     bot.stop();
     this.response.send(true);
   }
-  async all(){
+  all(){
     let botFactory:BotFactory=Container.get(BotFactory);
-    let bots:Array<any>=await botFactory.manufacturedBots();
+    let bots:Array<any> = botFactory.manufacturedBots();
     bots=bots.map(bot=> {
       return JSON.parse(bot.serialize());
     });
     this.response.send(bots);
+  }
+  listen(){
+    let botFactory:BotFactory=Container.get(BotFactory);
+    let bot:Bot=botFactory.manufacturedBot(new BotId(this.request.get('id')));
+    bot.setBotListener(this);
   }
 }

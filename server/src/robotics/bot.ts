@@ -6,7 +6,6 @@ import {ScraperListener} from "../scraper/scraper-listener";
 import {WatcherListener} from "../watcher/watcher-listener";
 import {ConverterListener} from "../converter-listener";
 import {BotListener} from "./bot-listener";
-import {Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinColumn, Embedded} from "typeorm";
 import {BotState} from "./bot-state";
 import {StartedBotState} from "./states/started-bot-state";
 import Client from "../watcher/client";
@@ -15,11 +14,10 @@ import History from "../watcher/history";
 import FfmpegVideo from "../ffmpeg-video";
 import ElectronBrowser from "../electron-browser";
 import Clock from "../clock";
+import {BotId} from "./bot-id";
 
 export default class Bot implements WatcherListener, ScraperListener, ConverterListener{
-  @PrimaryGeneratedColumn()
-  private id;
-  @Column({type:"string", nullable:true})
+  private id:BotId;
   private uri: string;
   private state:BotState;
   private botListener:BotListener;
@@ -36,7 +34,7 @@ export default class Bot implements WatcherListener, ScraperListener, ConverterL
     this.watcher.setWatcherListener(this);
     this.converter.setConverterListener(this);
   }
-  getId():any{
+  getId():BotId{
     return this.id;
   }
   setBotListener(botListener:BotListener):void{
@@ -72,7 +70,7 @@ export default class Bot implements WatcherListener, ScraperListener, ConverterL
   }
 
   destroy():void {
-    //this.setState(this.state.destroy());
+    this.setState(this.state.destroy());
   }
   setState(state:BotState):void{
     this.state=state;
@@ -80,7 +78,7 @@ export default class Bot implements WatcherListener, ScraperListener, ConverterL
 
   serialize():string{
     return JSON.stringify({
-      id: this.id,
+      id: ''+this.id,
       uri: this.uri,
       state: ''+this.state
     });
@@ -95,4 +93,7 @@ export default class Bot implements WatcherListener, ScraperListener, ConverterL
   }
 
 
+  setId(botId: BotId) {
+    this.id=botId;
+  }
 }

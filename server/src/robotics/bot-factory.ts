@@ -14,45 +14,27 @@ import Config from "../config/index";
 import * as path from "path";
 import {Service} from "typedi";
 import {ManufacturedBotState} from "./states/manufactured-bot-state";
+import {BotManufacturer} from "./bot-manufacturer";
+import {BotRepository} from "./bot-repository";
+import {BotId} from "./bot-id";
+import {BotConfiguration} from "./bot-configuration";
 @Service()
 export default class BotFactory{
-  private connection:Connection;
-   constructor(){
+  constructor(private botManufacturer:BotManufacturer, private botRepository:BotRepository){
+
   }
-  async open():Promise<void>{
-    this.connection=await createConnection({
-      driver: {
-        type: "sqlite",
-        storage: Config.DATABASE_PATH
-      },
-      entities: [Bot],
-      autoSchemaSync: true
-    });
-  }
-  async close():Promise<void>{
-    await this.connection.close();
-  }
-  async manufacture(configuration:{uri:string}):Promise<Bot>{
-    console.log('manufacturing bot');
-    let bot:Bot=new Bot();
-    bot.setState(new ManufacturedBotState);
-    bot.configure(configuration);
-    await this.connection.getRepository(Bot).persist(bot);
-    console.log('bot manufactured and configured');
+  manufacture(configuration:BotConfiguration){
+    let bot:Bot=this.botManufacturer.manufacture(configuration);
+    this.botRepository.add(bot);
     return bot;
   }
-  manufacturedBot(id:number):Promise<Bot>{
-    return this.connection.getRepository(Bot).findOneById(id);
+  recycle(botId:BotId){
+    this.botRepository.recycle(botId);
   }
-  async recycle(bot:Bot):Promise<void>{
-    if(bot.isRunning()){
-      bot.stop();
-    }
-    await this.connection.getRepository(Bot).remove(bot);
-    bot.destroy();
-    console.log('bot destroyed');
+  manufacturedBot(botId: BotId){
+    return this.botRepository.find(botId);
   }
-  manufacturedBots():Promise<Bot[]>{
-    return this.connection.getRepository(Bot).find();
+  manufacturedBots(){
+    return this.botRepository.all();
   }
 }

@@ -11,7 +11,6 @@ import {BotPage} from "./bot";
 export class BotFactoryPage {
   bots:Array<any>=[];
   constructor(private navCtrl: NavController, private navParams: NavParams,  private modalCtrl: ModalController, private roboticsService:RoboticsService, private changeDetectorRef:ChangeDetectorRef) {
-
   }
   ionViewDidLoad() {
     this.roboticsService.all().subscribe((bots)=>{
@@ -21,7 +20,13 @@ export class BotFactoryPage {
     console.log('ionViewDidLoad WatchPage');
   }
   toggleBotState(index:number){
-    this.bots[index].state=this.bots[index].state==='started'?'started': 'stopped';
+    this.bots[index].state = this.bots[index].state === 'started'?'stopped': 'started';
+    if(this.bots[index].state=== 'started'){
+      this.start(index);
+    }
+    else{
+      this.stop(index);
+    }
   }
   manufacture(){
     let modal = this.modalCtrl.create(BotPage);

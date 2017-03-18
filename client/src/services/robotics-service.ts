@@ -8,16 +8,20 @@ export class RoboticsService{
   manufacture(configuration:{uri:string}){
     return this.client.send('/robotics/manufacture', {configuration: configuration});
   }
-  recycle(id:any){
-    return this.client.send('/robotics/recycle', {identity:id});
+  recycle(id:string){
+    return this.client.send('/robotics/recycle', {id:id});
   }
-  start(id:any){
+  start(id:string){
     return this.client.send('/robotics/start', {id:id});
   }
-  stop(id:any){
+  stop(id:string){
     return this.client.send('/robotics/stop', {id:id});
   }
   all(){
     return this.client.send('/robotics/all', {});
   }
+  listen(id:any){
+    return this.client.send('/robotics/listen', {id:id});
+  }
+
 }
