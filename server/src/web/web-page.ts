@@ -1,9 +1,9 @@
-export class WebsiteContent{
+export class WebPage{
   private content:string;
   constructor(content:string){
     this.content=content;
   }
-  equals(websiteContent: WebsiteContent){
+  equals(WebPage: WebPage){
     return this.content === this.content;
   }
 }

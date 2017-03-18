@@ -8,8 +8,9 @@ export class WebsiteWatcher{
 
   }
   watch(uri:string){
-    this.uri=uri;
     this.setState(new ConfiguredWebsiteWatcherState());
+    this.uri=uri;
+    this.websiteChangeDetector.setUri(uri);
   }
   start(){
     this.setState(this.state.start());
