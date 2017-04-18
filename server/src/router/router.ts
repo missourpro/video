@@ -7,7 +7,6 @@ import {Response} from "./response";
 export default class Router{
   private controllers:Map<typeof Controller, Controller> =new Map();
   constructor(private service: ControllerServiceProvider, private instantiator:Instantiator) {
-
   }
   dispatch(route, request:Request, response:Response){
     //extract controller and action from route "/controller/action"

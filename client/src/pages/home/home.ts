@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, ToastController, App} from 'ionic-angular';
-import {Paragraphizer} from "../../providers/paragraphizer";
+import {Paragraphizer} from "../../services/paragraphizer";
 import {PreviewPage} from "../preview/preview";
 declare var __dirname;
 @Component({

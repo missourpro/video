@@ -29,7 +29,7 @@ describe('Converter', ()=>{
   afterEach(()=>{
   });
   it('convertsHtmlToVideo', ()=>{
-    let converter:Converter=new Converter(UNUSED_CONVERTER_LISTENER, browser, video, clock);
+    let converter:Converter=new Converter( browser, video, clock);
     converter.convert(UNUSED_HTML);
 
     converter.browserPainted(UNUSED_FRAME);
@@ -46,7 +46,7 @@ describe('Converter', ()=>{
     //let converter:Coverter=new Converter(converterListener, video)
   });
   it('notifiesWhenVideoConversionIsDone', ()=>{
-    let converter: Converter=new Converter(converterListener, UNUSED_BROWSER, UNUSED_VIDEO, UNUSED_CLOCK);
+    let converter: Converter=new Converter( UNUSED_BROWSER, UNUSED_VIDEO, UNUSED_CLOCK);
     converter.videoEnded();
     expect(converterListener.converted).toHaveBeenCalledTimes(1);
   });
@@ -54,17 +54,17 @@ describe('Converter', ()=>{
     //TODO
   });
   it('addsReceivedFrameToVideo', ()=>{
-    let converter: Converter=new Converter(UNUSED_CONVERTER_LISTENER, UNUSED_BROWSER, video, UNUSED_CLOCK);
+    let converter: Converter=new Converter(UNUSED_BROWSER, video, UNUSED_CLOCK);
     converter.browserPainted(UNUSED_FRAME);
     expect(video.addFrame).toHaveBeenCalledTimes(1);
   });
   it('opensHtmlInBrowser',()=>{
-    let converter: Converter=new Converter(UNUSED_CONVERTER_LISTENER, browser, UNUSED_VIDEO, UNUSED_CLOCK);
+    let converter: Converter=new Converter( browser, UNUSED_VIDEO, UNUSED_CLOCK);
     converter.convert(UNUSED_HTML);
     expect(browser.open).toHaveBeenCalled();
   });
   it('endsVideoWhenNoFrameLeft',()=>{
-    let converter: Converter=new Converter(UNUSED_CONVERTER_LISTENER, UNUSED_BROWSER, video, clock);
+    let converter: Converter=new Converter( UNUSED_BROWSER, video, clock);
     converter.clockTimeout();
     expect(video.end).toHaveBeenCalled();
   });

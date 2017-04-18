@@ -19,4 +19,8 @@ export abstract class BotState{
   stop(): BotState{
     throw new IllegalStateTransitionException;
   }
+  equals(other:BotState){
+    return this.toString() ===other.toString();
+  }
+  abstract toString();
 }

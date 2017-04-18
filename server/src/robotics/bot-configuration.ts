@@ -1,3 +1,7 @@
+import {Website} from "../web/website";
 export class BotConfiguration{
-  uri:string;
+  website:Website;
+  constructor(website:Website){
+    this.website=website;
+  }
 }

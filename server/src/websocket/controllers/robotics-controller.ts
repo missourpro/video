@@ -1,22 +1,23 @@
 import {Controller} from "../../router/controller";
-import {WatcherListener} from "../../watcher/watcher-listener";
 import {BotListener} from "../../robotics/bot-listener";
 import {Container} from "typedi";
 import BotFactory from "../../robotics/bot-factory";
 import Bot from "../../robotics/bot";
 import {BotId} from "../../robotics/bot-id";
 import {BotConfiguration} from "../../robotics/bot-configuration";
+import {WebsiteRepository} from "../../web/website-repository";
 
 export default class RoboticsController extends Controller implements BotListener{
   videoCreated() {
-    this.response.send({update:'video-created', path:''})
+    this.response.send({event:'video-created', path:''})
   }
   manufacture(){
+    this.response.send(true);
     let botFactory:BotFactory=Container.get(BotFactory);
-    let configuration=new BotConfiguration();
-    configuration.uri=this.request.get('configuration').uri;
+    let websites:WebsiteRepository=Container.get(WebsiteRepository);
+    let configuration:BotConfiguration=new BotConfiguration(websites.getWebsiteByUri(this.request.get('configuration').uri));
+    this.response.send(true);
     let bot=botFactory.manufacture(configuration);
-    bot.setBotListener(this);
     this.response.send(JSON.parse(bot.serialize()));
   }
   recycle(){
@@ -48,6 +49,6 @@ export default class RoboticsController extends Controller implements BotListene
   listen(){
     let botFactory:BotFactory=Container.get(BotFactory);
     let bot:Bot=botFactory.manufacturedBot(new BotId(this.request.get('id')));
-    bot.setBotListener(this);
+    bot.setListener(this);
   }
 }

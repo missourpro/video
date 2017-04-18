@@ -3,7 +3,6 @@ import {Injectable} from "@angular/core";
 @Injectable()
 export class RoboticsService{
   constructor(private client:Client){
-
   }
   manufacture(configuration:{uri:string}){
     return this.client.send('/robotics/manufacture', {configuration: configuration});

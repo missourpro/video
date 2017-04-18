@@ -22,7 +22,6 @@ export default class Scraper {
     this.browserWindow.loadURL(uri);
     //this.browserWindow.webContents.openDevTools();
     this.browserWindow.webContents.on('did-finish-load', () => {
-
       this.browserWindow.webContents.executeJavaScript(`
           function extract(){
             return document.querySelector('body').innerHTML;

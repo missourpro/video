@@ -1,33 +1,34 @@
 import BotFactory from "../../../src/robotics/bot-factory";
 import Bot from "../../../src/robotics/bot";
-import Config from "../../../src/config/index";
-import * as path from "path";
-import * as fs from "fs";
-import {DatabaseDriver} from "../database-driver";
 import {BotManufacturer} from "../../../src/robotics/bot-manufacturer";
 import {BotRepository} from "../../../src/robotics/bot-repository";
-import {BotId} from "../../../src/robotics/bot-id";
+import {BotConfiguration} from "../../../src/robotics/bot-configuration";
+import {WebsiteRepository} from "../../../src/web/website-repository";
+import {ConfiguredBotState} from "../../../src/robotics/states/configured-bot-state";
 
 jasmine.DEFAULT_TIMEOUT_INTERVAL=30000;
 fdescribe('BotFactory', () => {
   let botFactory:BotFactory;
+  let websites:WebsiteRepository;
   beforeEach(async ()=>{
     botFactory=new BotFactory(new BotManufacturer(), new BotRepository());
+    websites=new WebsiteRepository();
   });
-  afterEach( ()=>{
+  afterEach(()=>{
   });
-  it('manufacturesBot',  ()=>{
-    let bot:Bot=botFactory.manufacture({uri:'http://longform.org/random'});
+  fit('manufacturesBot', ()=>{
+    let bot:Bot=botFactory.manufacture(new BotConfiguration(websites.getWebsiteByUri('http://longform.org/random')));
     expect(bot).toBeDefined();
+    expect(bot.getState().equals(new ConfiguredBotState())).toBeTruthy();
   });
-  it('recyclesBot', ()=>{
-    let bot:Bot = botFactory.manufacture({uri:'http://longform.org/random'});
+  fit('recyclesBot', ()=>{
+    let bot:Bot=botFactory.manufacture(new BotConfiguration(websites.getWebsiteByUri('http://longform.org/random')));
     botFactory.recycle(bot.getId());
     expect(botFactory.manufacturedBots().length).toBe(0);
   });
-  it('keepsTrackOfManufacturedBots', ()=>{
-    let bot1:Bot= botFactory.manufacture({uri:'http://longform.org/random'});
-    let bot2:Bot= botFactory.manufacture({uri:'http://www.hespress.com'});
+  fit('storesManufacturedBots', ()=>{
+    let bot1:Bot=botFactory.manufacture(new BotConfiguration(websites.getWebsiteByUri('http://longform.org/random')));
+    let bot2:Bot=botFactory.manufacture(new BotConfiguration(websites.getWebsiteByUri('http://www.hespress.com')));
     expect(botFactory.manufacturedBots().length).toEqual(2);
   });
 });

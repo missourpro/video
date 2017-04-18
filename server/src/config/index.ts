@@ -12,8 +12,7 @@ export default class Config{
   static STORAGE_PATH = path.join(Config.ROOT_PATH,'storage');
   static FFMPEG_PATH = path.join(Config.ROOT_PATH,  'node_modules', 'ffmpeg', 'ffmpeg');
   static FFPROBE_PATH= path.join(Config.ROOT_PATH,  'node_modules', 'ffmpeg', 'ffprobe');
-  static SERVER_KEY=fs.readFileSync(path.join(Config.ROOT_PATH, 'server.key') );
-  static SERVER_CERTIFICATE=fs.readFileSync(path.join(Config.ROOT_PATH, 'server.crt') );
-  //TODO rename ".bots"
+  //static SERVER_KEY=fs.readFileSync(path.join(Config.ROOT_PATH, 'server.key') );
+  //static SERVER_CERTIFICATE=fs.readFileSync(path.join(Config.ROOT_PATH, 'server.crt') );
   static DATABASE_PATH: string=path.join(Config.STORAGE_PATH,'database.sqlite3');
 }

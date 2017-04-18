@@ -1,9 +1,12 @@
 export class WebPage{
-  private content:string;
-  constructor(content:string){
-    this.content=content;
+  private itsUri:string;
+  constructor(uri:string){
+    this.itsUri=uri;
   }
-  equals(WebPage: WebPage){
-    return this.content === this.content;
+  getUri(){
+    return this.itsUri;
+  }
+  equals(webPage: WebPage){
+    return this.itsUri === webPage.getUri();
   }
 }

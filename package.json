@@ -6,7 +6,7 @@
   "private": true,
   "scripts": {
     "postinstall": "install-app-deps",
-    "install:post": "npm run install:post:test && yarn run install:post:server",
+    "install:post": "npm run install:post:test && npm run install:post:server",
     "install:post:server": "ffbinaries --output=./node_modules/ffmpeg",
     "install:post:test": "webdriver-manager update",
     "test": "npm run test:server",

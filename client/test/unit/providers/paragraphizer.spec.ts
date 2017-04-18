@@ -1,4 +1,4 @@
-import {Paragraphizer} from "../../../src/providers/paragraphizer";
+import {Paragraphizer} from "../../../src/services/paragraphizer";
 describe('Paragraphizer', () => {
   let paragraphizer: Paragraphizer;
   beforeEach(()=>{

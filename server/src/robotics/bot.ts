@@ -1,99 +1,83 @@
-import Watcher from "../watcher/watcher";
-import Scraper from "../scraper/scraper";
-import Transformer from "../transformer/transformer";
-import Converter from "../converter";
-import {ScraperListener} from "../scraper/scraper-listener";
-import {WatcherListener} from "../watcher/watcher-listener";
-import {ConverterListener} from "../converter-listener";
 import {BotListener} from "./bot-listener";
 import {BotState} from "./bot-state";
 import {StartedBotState} from "./states/started-bot-state";
-import Client from "../watcher/client";
-import {Paragraphizer} from "../transformer/paragraphizer";
-import History from "../watcher/history";
-import FfmpegVideo from "../ffmpeg-video";
-import ElectronBrowser from "../electron-browser";
-import Clock from "../clock";
 import {BotId} from "./bot-id";
+import {WebsiteListener} from "../web/website-listener";
+import {WebsiteChangeList} from "../web/website-change-list";
+import {AlarmClock} from "../time/alarm-clock";
+import {AlarmClockListener} from "../time/alarm-clock-listener";
+import {BotConfiguration} from "./bot-configuration";
 
-export default class Bot implements WatcherListener, ScraperListener, ConverterListener{
-  private id:BotId;
-  private uri: string;
-  private state:BotState;
-  private botListener:BotListener;
-  private watcher:Watcher;
-  private scraper:Scraper;
-  private transformer:Transformer;
-  private converter:Converter;
-  constructor(){
-    this.watcher=new Watcher(new Client(), new History());
-    this.scraper=new Scraper();
-    this.transformer=new Transformer(new Paragraphizer());
-    this.converter=new Converter(new ElectronBrowser(),new  FfmpegVideo(), new Clock());
-    this.scraper.setScraperListener(this);
-    this.watcher.setWatcherListener(this);
-    this.converter.setConverterListener(this);
+export default class Bot implements WebsiteListener, AlarmClockListener{
+
+
+  private itsId:BotId;
+  private itsState:BotState;
+  private itsConfiguration: BotConfiguration;
+  private itsListener:BotListener;
+  private itsQueue:Array<WebsiteChangeList>;
+  private static WAKE_UP_INTERVAL: number = 10*1000;
+  constructor(private alarm:AlarmClock){
+  }
+  websiteChanged(changes: WebsiteChangeList) {
+    this.itsQueue.push(changes);
+  }
+  wakeUp() {
+    let changes:WebsiteChangeList;
+    changes=this.itsQueue.shift()
   }
   getId():BotId{
-    return this.id;
+    return this.itsId;
   }
-  setBotListener(botListener:BotListener):void{
-    this.botListener=botListener;
+  setListener(listener:BotListener):void{
+    this.itsListener=listener;
   }
-  private watch(uri:string):void{
-    this.setState(this.state.configure());
-    this.uri=uri;
+  notify(){
+    if(this.itsListener){
+      this.itsListener.videoCreated();
+    }
   }
   start():void{
-    this.state=this.state.start();
-    this.watcher.watch(this.uri);
+    this.itsState=this.itsState.start();
+    this.itsConfiguration.website.setListener(this);
+    this.alarm.every(Bot.WAKE_UP_INTERVAL, this);
   }
   stop():void{
-    this.setState(this.state.stop());
-    this.watcher.stop();
-  }
-  websiteChanged(uri: string):void {
-    this.scraper.scrape(this.uri);
+    this.setState(this.itsState.stop());
   }
 
-  scraped(page: any):void {
-    this.converter.convert(this.transformer.transform(page));
-  }
-
-  converted(): void {
-    this.botListener.videoCreated();
-  }
 
   isRunning() :boolean{
     //TODO promote equality to level state class: BotState
-    return this.state instanceof StartedBotState;
+    return this.itsState instanceof StartedBotState;
   }
 
   destroy():void {
-    this.setState(this.state.destroy());
+    this.setState(this.itsState.destroy());
   }
   setState(state:BotState):void{
-    this.state=state;
+    this.itsState=state;
   }
 
   serialize():string{
     return JSON.stringify({
-      id: ''+this.id,
-      uri: this.uri,
-      state: ''+this.state
+      id: ''+this.itsId,
+      uri: this.itsConfiguration.website.getUri(),
+      state: ''+this.itsState
     });
   }
 
-  getUri() {
-    return this.uri;
-  }
-
-  configure(configuration: {uri: string}) {
-    this.watch(configuration.uri);
+  configure(configuration: BotConfiguration) {
+    this.setState(this.itsState.configure());
+    this.itsConfiguration=configuration;
   }
 
 
   setId(botId: BotId) {
-    this.id=botId;
+    this.itsId=botId;
+  }
+
+  getState() {
+    return this.itsState;
   }
 }

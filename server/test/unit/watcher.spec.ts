@@ -22,7 +22,7 @@ describe('Watcher', ()=> {
     jasmine.clock().uninstall();
   });
   it('notifiesWebsiteChanged',  ()=>{
-    let watcher:Watcher=new Watcher(watcherListener, client, history);
+    let watcher:Watcher=new Watcher(client, history);
     watcher.watch(FAKE_WEBSITE_URI);
     watcher.websiteFetched(ORIGINAL_HTML);
     jasmine.clock().tick(WATCH_INTERVAL);
@@ -30,7 +30,7 @@ describe('Watcher', ()=> {
     expect(watcherListener.websiteChanged).toHaveBeenCalledTimes(1);
   });
   it('fetchesWebsitePeriodically', ()=>{
-    let watcher:Watcher=new Watcher(watcherListener, client, history);
+    let watcher:Watcher=new Watcher( client, history);
     watcher.watch(FAKE_WEBSITE_URI);
     watcher.websiteFetched(ORIGINAL_HTML);
     jasmine.clock().tick(WATCH_INTERVAL);
@@ -38,14 +38,14 @@ describe('Watcher', ()=> {
   });
   it('savesWebsiteSnapshotForTheFirstTime', ()=>{
     spyOn(history, 'save').and.callThrough();
-    let watcher:Watcher=new Watcher(watcherListener,client, history);
+    let watcher:Watcher=new Watcher(client, history);
     watcher.watch(FAKE_WEBSITE_URI);
     watcher.websiteFetched(ORIGINAL_HTML);
     expect(history.save).toHaveBeenCalledTimes(1);
   });
   it('savesWebsiteSnapshotNextTimeOnlyIfthereIsAChange', ()=>{
     spyOn(history, 'save').and.callThrough();
-    let watcher:Watcher=new Watcher(watcherListener,client, history);
+    let watcher:Watcher=new Watcher(client, history);
     watcher.watch(FAKE_WEBSITE_URI);
     watcher.websiteFetched(ORIGINAL_HTML);
     jasmine.clock().tick(WATCH_INTERVAL);
@@ -57,14 +57,14 @@ describe('Watcher', ()=> {
     expect(history.save).toHaveBeenCalledTimes(2);
   });
   it('doesntFetchWhenStopped', ()=>{
-    let watcher:Watcher=new Watcher(watcherListener,client, history);
+    let watcher:Watcher=new Watcher(client, history);
     watcher.watch(FAKE_WEBSITE_URI);
     watcher.stop();
     jasmine.clock().tick(WATCH_INTERVAL);
     expect(client.fetch).toHaveBeenCalledTimes(1);
   });
   it('doesntNotifyAboutAnyWebsiteChangeWhenStopped', ()=>{
-    let watcher:Watcher=new Watcher(watcherListener,client, history);
+    let watcher:Watcher=new Watcher(client, history);
     watcher.watch(FAKE_WEBSITE_URI);
     watcher.websiteFetched(ORIGINAL_HTML);
     jasmine.clock().tick(WATCH_INTERVAL);
@@ -73,7 +73,7 @@ describe('Watcher', ()=> {
     expect(watcherListener.websiteChanged).not.toHaveBeenCalled();
   });
   it('doesntFetchUntilPreviousFetchRequestDidFinish', ()=>{
-    let watcher:Watcher=new Watcher(watcherListener,client, history);
+    let watcher:Watcher=new Watcher(client, history);
     watcher.watch(FAKE_WEBSITE_URI);
     jasmine.clock().tick(WATCH_INTERVAL);
     jasmine.clock().tick(WATCH_INTERVAL);

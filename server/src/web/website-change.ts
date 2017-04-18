@@ -1,6 +1,10 @@
+import {WebPage} from "./web-page";
 export class WebsiteChange{
   private date:Date;
-  private uri;
+  private webPage:WebPage;
+  constructor(page:WebPage){
+    this.webPage=page;
+  }
   when(){
     return this.date;
   }
@@ -8,8 +12,11 @@ export class WebsiteChange{
     this.date=new Date();
   }
 
-  getUri() {
-    return this.uri;
+  getWebPage() {
+    return this.webPage;
+  }
+  setWebPage(webPage:WebPage) {
+    this.webPage=webPage;
   }
   before(change:WebsiteChange){
     return this.when()<change.when();
@@ -22,6 +29,6 @@ export class WebsiteChange{
   }
 
   equals(change: WebsiteChange) {
-    return this.uri === change.getUri();
+    return this.webPage.equals(change.getWebPage());
   }
 }

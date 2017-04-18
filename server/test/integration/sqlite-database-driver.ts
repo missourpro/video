@@ -1,6 +1,6 @@
 import * as fs from 'fs';
 const sqlite3 = require('sqlite3').verbose();
-export class DatabaseDriver{
+export class SqliteDatabaseDriver{
   private database;
   constructor(private path:string){
 

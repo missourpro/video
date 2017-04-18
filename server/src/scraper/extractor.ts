@@ -7,7 +7,8 @@ export default class Extractor{
   extract(html:string):Page{
     {
       let element=this.parser.parse(html);
-      element.find();
-    };
+      //element.find();
+    }
+    return
   }
 }
